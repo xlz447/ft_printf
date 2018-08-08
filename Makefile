@@ -20,7 +20,12 @@ GREEN	=	\033[0;32m
 BLUE	=	\033[0;34m
 RED		=	\033[0;31m
 
-PRINTFFILES=ft_printf.c
+PRINTFFILES=ft_printf.c \
+			set_flags.c \
+			ft_printf_diuox.c \
+			ft_printf_c.c \
+			ft_printf_s.c \
+			ft_printf_p.c
 
 LIBFTFILES =ft_putchar.c \
 			ft_memset.c \
@@ -95,6 +100,10 @@ LIBFTOBJ	= $(LIBSRCS:.c=.o)
 
 all: $(NAME)
 
+test: all
+	@gcc test.c $(PRINTFSRCS) $(LIBSRCS) -I includes -g
+	@echo "$(GREEN)testing ✓ Created a.out$(NOC)"
+
 $(PRINTFOBJ): %.o:%.c
 	@gcc -c $(CFLAGS) $< -o $@
 
@@ -104,7 +113,7 @@ $(LIBFTOBJ): %.o:%.c
 $(NAME): $(LIBFTOBJ) $(PRINTFOBJ)
 	@ar rcs $(NAME) $(PRINTFOBJ) $(LIBFTOBJ)
 	@ranlib $(NAME)
-	@echo "$(GREEN)LIBFTPRINTF ✓ Created libftprintf.a"
+	@echo "$(GREEN)LIBFTPRINTF ✓ Created libftprintf.a$(NOC)"
 
 clean:
 	@rm -f $(PRINTFOBJ) $(LIBFTOBJ)
@@ -113,6 +122,12 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@echo "$(RED)LIBFTPRINTF ✓ Removed libftprintf.a$(NOC)"
+
+cleantest: fclean
+	@rm -f a.out
+	@rm -rf a.out.dSYM
+	@echo "$(RED)testing ✓ Removed a.out.dSYM$(NOC)"
+	@echo "$(RED)testing ✓ Removed a.out$(NOC)"
 
 re: fclean all
 
