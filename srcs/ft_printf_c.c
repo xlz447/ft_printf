@@ -78,10 +78,10 @@ void		ft_printf_c(t_pf *p, union u_type *t, va_list ap)
 	int i;
 
 	i = -1;
-	if (p->len == 4)
-		ft_printf_lc(p, t, ap);
-	else
-	{
+	// if (p->len == 4)
+	// 	ft_printf_lc(p, t, ap);
+	// else
+	// {
 		if (p->type == 'c')
 			t->c = (unsigned char)va_arg(ap, int);
 		else
@@ -97,5 +97,5 @@ void		ft_printf_c(t_pf *p, union u_type *t, va_list ap)
 		}
 		if (p->left != 1)
 			buf_c(p, t->c);
-	}
+	// }
 }
