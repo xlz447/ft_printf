@@ -6,7 +6,7 @@
 /*   By: xzhu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 14:17:07 by xzhu              #+#    #+#             */
-/*   Updated: 2018/08/10 14:17:10 by xzhu             ###   ########.fr       */
+/*   Updated: 2018/08/11 23:49:13 by xzhu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_pick_me	dispatch_table(char c)
 	f['D'] = &ft_printf_diuoxb;
 	f['U'] = &ft_printf_diuoxb;
 	f['O'] = &ft_printf_diuoxb;
-	f['C'] = &ft_printf_lc;
+	f['C'] = &ft_printf_c;
 	f['S'] = &ft_printf_ls;
 	f['b'] = &ft_printf_diuoxb;
 	f['B'] = &ft_printf_diuoxb;

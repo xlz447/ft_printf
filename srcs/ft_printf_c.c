@@ -6,7 +6,7 @@
 /*   By: xzhu <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/03 13:39:32 by xzhu              #+#    #+#             */
-/*   Updated: 2018/08/03 13:39:37 by xzhu             ###   ########.fr       */
+/*   Updated: 2018/08/11 23:48:49 by xzhu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void		ft_printf_c(t_pf *p, union u_type *t, va_list ap)
 	int i;
 
 	i = -1;
-	if (p->type == 'c')
+	if (p->type == 'c' || p->type == 'C')
 		t->c = (unsigned char)va_arg(ap, int);
 	else
 		t->c = p->temp[0];
