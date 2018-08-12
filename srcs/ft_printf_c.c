@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	ft_putwchar(t_pf *p, wchar_t c)
+void		ft_putwchar(t_pf *p, wchar_t c)
 {
 	if (c <= 0x7F)
 		buf_c(p, c);
@@ -39,6 +39,7 @@ void	ft_putwchar(t_pf *p, wchar_t c)
 static int	lc_size(wchar_t lc)
 {
 	int len;
+
 	if (lc <= 0x7F)
 		len = 1;
 	else if (lc <= 0x7FF)
@@ -52,7 +53,7 @@ static int	lc_size(wchar_t lc)
 	return (len);
 }
 
-static void	ft_printf_lc(t_pf *p, union u_type *t, va_list ap)
+void		ft_printf_lc(t_pf *p, union u_type *t, va_list ap)
 {
 	int	len;
 	int i;
@@ -78,24 +79,19 @@ void		ft_printf_c(t_pf *p, union u_type *t, va_list ap)
 	int i;
 
 	i = -1;
-	// if (p->len == 4)
-	// 	ft_printf_lc(p, t, ap);
-	// else
-	// {
-		if (p->type == 'c')
-			t->c = (unsigned char)va_arg(ap, int);
+	if (p->type == 'c')
+		t->c = (unsigned char)va_arg(ap, int);
+	else
+		t->c = p->temp[0];
+	if (p->left == 1)
+		buf_c(p, t->c);
+	while (++i < p->min_w - 1)
+	{
+		if (p->zero == 1)
+			buf_c(p, '0');
 		else
-			t->c = p->temp[0];
-		if (p->left == 1)
-			buf_c(p, t->c);
-		while (++i < p->min_w - 1)
-		{
-			if (p->zero == 1)
-				buf_c(p, '0');
-			else
-				buf_c(p, ' ');
-		}
-		if (p->left != 1)
-			buf_c(p, t->c);
-	// }
+			buf_c(p, ' ');
+	}
+	if (p->left != 1)
+		buf_c(p, t->c);
 }

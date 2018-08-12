@@ -22,10 +22,13 @@ RED		=	\033[0;31m
 
 PRINTFFILES=ft_printf.c \
 			set_flags.c \
-			ft_printf_diuox.c \
+			dispatch.c \
+			buffer.c \
+			ft_printf_diuoxb.c \
 			ft_printf_c.c \
 			ft_printf_s.c \
-			ft_printf_p.c
+			ft_printf_p.c \
+			diuoxb_setup.c
 
 LIBFTFILES =ft_putchar.c \
 			ft_memset.c \
@@ -123,7 +126,7 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "$(RED)LIBFTPRINTF ✓ Removed libftprintf.a$(NOC)"
 
-cleantest: fclean
+testclean: fclean
 	@rm -f a.out
 	@rm -rf a.out.dSYM
 	@echo "$(RED)testing ✓ Removed a.out.dSYM$(NOC)"
